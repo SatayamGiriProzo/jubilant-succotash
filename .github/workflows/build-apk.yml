@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,8 +24,20 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug --stacktrace
+          cp app/build/outputs/apk/debug/app-debug.apk SpeakUp30.apk
 
       - uses: actions/upload-artifact@v4
         with:
           name: SpeakUp30-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: SpeakUp30.apk
+
+      - name: Publish the download link
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: SpeakUp 30 v1.0.${{ github.run_number }}
+          make_latest: true
+          body: |
+            Tap **SpeakUp30.apk** below to download, then open it on your Android phone to install.
+          files: SpeakUp30.apk

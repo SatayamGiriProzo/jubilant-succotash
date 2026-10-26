@@ -52,3 +52,7 @@ The key is stored only on your phone and sent only to Anthropic. Haiku (the defa
 ## Publishing on Google Play (later)
 
 The GitHub build makes a debug APK, which is fine for your own phone and for sharing with friends. To publish on the Play Store, create a signing key in Android Studio (**Build → Generate Signed App Bundle**) and upload the `.aab`. For cloud accounts that sync across phones, the next step is adding Firebase Authentication.
+
+## Download
+
+Latest APK: https://github.com/SatayamGiriProzo/jubilant-succotash/releases/latest/download/SpeakUp30.apk
